@@ -63,10 +63,11 @@ class AccountInfo extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("\$ ", style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        ?.copyWith(color: Colors.white, fontSize: 16)),
+                  Text("\$ ",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5
+                          ?.copyWith(color: Colors.white, fontSize: 16)),
                   Text(
                     accountSettings.totalAmount.toFormattedString(),
                     style: Theme.of(context)

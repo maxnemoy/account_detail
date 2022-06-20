@@ -1,4 +1,3 @@
-
 import 'package:test_screen/src/logic/models/invoice_data.dart';
 import 'package:test_screen/src/utils/concurrency_types.dart';
 
@@ -14,7 +13,9 @@ class AccountSettings {
       this.invoiceType = InvoiceTypes.all,
       this.concurrencyType = ConcurrencyTypes.usd});
 
-  AccountSettings copyWith({bool? showHeaderInfo, InvoiceTypes? invoiceType,
+  AccountSettings copyWith(
+          {bool? showHeaderInfo,
+          InvoiceTypes? invoiceType,
           ConcurrencyTypes? concurrencyType}) =>
       AccountSettings(
           showHeaderInfo: showHeaderInfo ?? this.showHeaderInfo,
