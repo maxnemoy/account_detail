@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_screen/src/config/theme_data.dart';
 import 'package:test_screen/src/logic/bloc/account_detail/bloc.dart';
 import 'package:test_screen/src/logic/models/account_settings.dart';
 import 'package:test_screen/src/logic/models/invoice_data.dart';
@@ -19,7 +20,7 @@ class HistorySettings extends StatelessWidget {
     return Container(
       height: 220,
       width: double.infinity,
-      color: Colors.grey[900],
+      color: Theme.of(context).colorScheme.secondary,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -28,7 +29,7 @@ class HistorySettings extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
-                ?.copyWith(color: Colors.grey[200], fontSize: 18),
+                ?.copyWith(color: BrandTheme.defaultColorScheme.background),
           ),
           const SizedBox(
             height: 13,
@@ -44,8 +45,11 @@ class HistorySettings extends StatelessWidget {
                     ))
                 .toList(),
             onSelected: (v) {
-              context.read<AccountDetailBloc>().add(AccountDetailChangedEvent(
-                  accountSettings.copyWith(concurrencyType: v)));
+              context.read<AccountDetailBloc>().add(
+                    AccountDetailChangedEvent(
+                      accountSettings.copyWith(concurrencyType: v),
+                    ),
+                  );
             },
           ),
           Padding(
@@ -64,9 +68,11 @@ class HistorySettings extends StatelessWidget {
                             ))
                         .toList(),
                     onSelected: (v) {
-                      context
-                          .read<AccountDetailBloc>()
-                          .add(AccountDetailChangedEvent(accountSettings.copyWith(invoiceType: v)));
+                      context.read<AccountDetailBloc>().add(
+                            AccountDetailChangedEvent(
+                              accountSettings.copyWith(invoiceType: v),
+                            ),
+                          );
                     },
                   ),
                 ),
@@ -75,7 +81,9 @@ class HistorySettings extends StatelessWidget {
                 ),
                 BrandButton(
                   child: const SizedBox(
-                      height: 34, child: Icon(CupertinoIcons.calendar)),
+                    height: 34,
+                    child: Icon(CupertinoIcons.calendar),
+                  ),
                   onPressed: () {},
                 ),
               ],

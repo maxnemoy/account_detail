@@ -22,12 +22,12 @@ class ListDivider extends StatelessWidget {
       height: 49,
       padding: const EdgeInsets.symmetric(horizontal: 13),
       width: double.infinity,
-      color: Colors.grey[400],
+      color: Theme.of(context).colorScheme.surface,
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
           _buildText(),
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 18),
         ),
       ),
     );

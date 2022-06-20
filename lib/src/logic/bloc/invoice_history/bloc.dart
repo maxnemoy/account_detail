@@ -6,7 +6,8 @@ import 'package:test_screen/src/logic/services/account_settings_base.dart';
 part 'event.dart';
 part 'state.dart';
 
-class InvoiceHistoryBloc extends Bloc<InvoiceHistoryEvent, InvoiceHistoryState> {
+class InvoiceHistoryBloc
+    extends Bloc<InvoiceHistoryEvent, InvoiceHistoryState> {
   InvoiceHistoryBloc(AccountServiceBase accountServiceBase)
       : repository = accountServiceBase,
         super(InvoiceHistoryInitState()) {

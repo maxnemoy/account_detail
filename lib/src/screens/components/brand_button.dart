@@ -11,14 +11,14 @@ class BrandButton extends StatelessWidget {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.all(20),
-        primary: Colors.grey[300],
+        primary: Theme.of(context).colorScheme.background,
         textStyle: Theme.of(context).textTheme.bodyMedium,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         side: BorderSide(
-          width: 1.0,
-          color: Colors.grey.withOpacity(0.3),
+          width: 1,
+          color: Theme.of(context).colorScheme.surface.withOpacity(.3),
         ),
       ),
       onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_screen/src/config/theme_data.dart';
 import 'package:test_screen/src/logic/models/invoice_data.dart';
 import 'package:test_screen/src/utils/concurrency_types.dart';
 
@@ -22,7 +23,7 @@ class BrandDropDownButton<T> extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.0,
-          color: Colors.grey.withOpacity(0.3),
+          color: Theme.of(context).colorScheme.background.withOpacity(.3),
         ),
         borderRadius: BorderRadius.circular(10),
       ),
@@ -44,11 +45,12 @@ class BrandDropDownButton<T> extends StatelessWidget {
               }
               if (items.value.runtimeType == ConcurrencyTypes) {
                 name = (items.value as ConcurrencyTypes).toName();
-              } 
+              }
               return Row(
                 children: [
                   Text(name ?? "",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: 16)),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: BrandTheme.defaultColorScheme.background)),
                 ],
               );
             }).toList();

@@ -28,10 +28,11 @@ class InvoiceTile extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.only(left: 17, top: 17, right: 15, bottom: 17),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
-          border: Border(
-              bottom:
-                  BorderSide(width: 2, color: Colors.grey.withOpacity(0.1)))),
+        border: Border(
+          bottom: BorderSide(
+              width: 2, color: Theme.of(context).colorScheme.surface),
+        ),
+      ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         InvoiceAvatar(
           data: data,
@@ -43,20 +44,18 @@ class InvoiceTile extends StatelessWidget {
             children: [
               Text(
                 data.source.title,
-                style:
-                    Theme.of(context).textTheme.headline6?.copyWith(height: 1),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               const Spacer(),
               Text(
                 DateFormat('kk:mm').format(data.date),
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               )
             ],
           ),
         ),
         const Spacer(),
-        Text(_buildAmountString(),
-            style: Theme.of(context).textTheme.headline6?.copyWith(height: 1))
+        Text(_buildAmountString(), style: Theme.of(context).textTheme.bodyLarge)
       ]),
     );
   }

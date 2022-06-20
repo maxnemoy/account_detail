@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_screen/src/config/theme_data.dart';
 import 'package:test_screen/src/logic/models/invoice_data.dart';
-
 
 class InvoiceAvatar extends StatelessWidget {
   final InvoiceData data;
@@ -19,12 +19,22 @@ class InvoiceAvatar extends StatelessWidget {
         width: 32,
         padding: const EdgeInsets.all(2),
         decoration: data.source.type == SourceType.person
-            ? const BoxDecoration(
+            ? BoxDecoration(
                 color: Colors.transparent,
                 border: Border.fromBorderSide(
-                    BorderSide(width: 1, color: Colors.black)),
-                borderRadius: BorderRadius.all(Radius.circular(15)))
-            : BoxDecoration(color: getRandomColor()),
+                  BorderSide(
+                      width: 1, color: BrandTheme.defaultColorScheme.primary),
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+              )
+            : BoxDecoration(
+                color: getRandomColor(),
+                border: Border.fromBorderSide(
+                  BorderSide(
+                      width: 1, color: Theme.of(context).colorScheme.surface),
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+              ),
         child: data.source.type == SourceType.company
             ? Image.network(
                 data.source.logo ??

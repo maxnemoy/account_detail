@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_screen/src/logic/bloc/account_detail/bloc.dart';
 import 'package:test_screen/src/logic/bloc/invoice_history/bloc.dart';
 import 'package:test_screen/src/logic/models/account_settings.dart';
-import 'package:test_screen/src/logic/models/invoice_data.dart';
 import 'package:test_screen/src/screens/account_detail/components/account_info.dart';
 import 'package:test_screen/src/screens/account_detail/components/history_settings.dart';
 import 'package:test_screen/src/screens/account_detail/components/invoice_tile.dart';
 import 'package:test_screen/src/screens/account_detail/components/list_divider.dart';
-import 'package:test_screen/src/screens/placeholder/placeholed.dart';
+import 'package:test_screen/src/screens/placeholder/placeholder.dart';
 
 class AccountDetailScreen extends StatelessWidget {
   const AccountDetailScreen({Key? key}) : super(key: key);
@@ -18,7 +17,6 @@ class AccountDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(CupertinoIcons.arrow_left),
@@ -88,7 +86,7 @@ class _AccountDetailBodyState extends State<_AccountDetailBody> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Center(
-                  child: CircularProgressIndicator(color: Colors.black),
+                  child: CircularProgressIndicator(),
                 ),
               ),
             ),

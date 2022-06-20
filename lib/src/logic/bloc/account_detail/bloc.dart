@@ -26,7 +26,8 @@ class AccountDetailBloc extends Bloc<AccountDetailEvent, AccountDetailState> {
   Future<void> _onAccountDetailChanged(AccountDetailChangedEvent event,
       Emitter<AccountDetailState> emitter) async {
     emitter(AccountDetailLoadDataState());
-    AccountSettings settings = await repository.saveAccountSettings(event.settings);
+    AccountSettings settings =
+        await repository.saveAccountSettings(event.settings);
     emitter(AccountDetailShowState(settings));
   }
 }

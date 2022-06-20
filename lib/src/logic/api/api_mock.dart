@@ -9,6 +9,7 @@ class ApiClientMock extends Mock implements ApiClient {
     await Future.delayed(const Duration(seconds: 1));
     return AccountSettings();
   }
+
   @override
   Future<AccountSettings> saveAccountSettings(AccountSettings settings) async {
     return settings;

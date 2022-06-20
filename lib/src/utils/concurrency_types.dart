@@ -13,6 +13,7 @@ extension ConcurrencyTypesExtensions on ConcurrencyTypes {
         throw UndefinedConcurrencyType();
     }
   }
+
   String toName() {
     switch (this) {
       case ConcurrencyTypes.usd:

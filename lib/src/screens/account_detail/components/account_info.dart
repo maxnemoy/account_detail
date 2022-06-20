@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_screen/src/config/theme_data.dart';
 
 import 'package:test_screen/src/logic/bloc/account_detail/bloc.dart';
 import 'package:test_screen/src/logic/models/account_settings.dart';
@@ -15,15 +16,19 @@ class AccountInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      color: Colors.black,
+      color: Theme.of(context).colorScheme.primary,
       child: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(50),
-            child: Container(
+            child: SizedBox(
               height: 100,
               width: 100,
-              color: Colors.amber,
+              child: Image.network(
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png",
+                filterQuality: FilterQuality.medium,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Padding(
@@ -33,8 +38,10 @@ class AccountInfo extends StatelessWidget {
                 const Spacer(),
                 Text(
                   "USD Account",
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
-                      color: Colors.grey, fontWeight: FontWeight.normal),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color:
+                          BrandTheme.defaultColorScheme.surface.withOpacity(.5),
+                      fontSize: 18),
                 ),
                 Expanded(
                   child: Container(
@@ -45,9 +52,12 @@ class AccountInfo extends StatelessWidget {
                           accountSettings.showHeaderInfo ? "Hide" : "Show"),
                       onPressed: () {
                         context.read<AccountDetailBloc>().add(
-                            AccountDetailChangedEvent(accountSettings.copyWith(
-                                showHeaderInfo:
-                                    !accountSettings.showHeaderInfo)));
+                              AccountDetailChangedEvent(
+                                accountSettings.copyWith(
+                                    showHeaderInfo:
+                                        !accountSettings.showHeaderInfo),
+                              ),
+                            );
                       },
                     ),
                   ),
@@ -63,17 +73,14 @@ class AccountInfo extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("\$ ",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          ?.copyWith(color: Colors.white, fontSize: 16)),
+                  Text("\$  ",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: BrandTheme.defaultColorScheme.background)),
                   Text(
                     accountSettings.totalAmount.toFormattedString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        ?.copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: BrandTheme.defaultColorScheme.background,
+                        fontSize: 28),
                   ),
                 ],
               ),

@@ -7,4 +7,4 @@ abstract class InvoiceHistoryEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class InvoiceHistoryFetchedEvent extends InvoiceHistoryEvent{}
+class InvoiceHistoryFetchedEvent extends InvoiceHistoryEvent {}
