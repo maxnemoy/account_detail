@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 enum SourceType { company, person }
 
 class InvoiceSourceData {
@@ -9,27 +11,31 @@ class InvoiceSourceData {
       : title = title ?? "Undefined sender";
 }
 
-enum InvoiceType { expense, refill }
+enum InvoiceTypes { all, expense, refill }
 
 class UndefinedInvoiceType extends Error {}
 
-extension InvoiceTypeExtensions on InvoiceType {
+extension InvoiceTypeExtensions on InvoiceTypes {
   String toSymbol() {
     switch (this) {
-      case InvoiceType.expense:
+      case InvoiceTypes.expense:
         return "-";
-      case InvoiceType.refill:
+      case InvoiceTypes.refill:
         return "+";
       default:
         throw UndefinedInvoiceType();
     }
+  }
+
+  String toName() {
+    return toBeginningOfSentenceCase(name) ?? "";
   }
 }
 
 class InvoiceData {
   final DateTime date;
   final InvoiceSourceData source;
-  final InvoiceType type;
+  final InvoiceTypes type;
   final double amount;
 
   InvoiceData(
@@ -73,55 +79,55 @@ List<InvoiceData> dataList = [
       amount: 12.54,
       date: DateTime.now(),
       source: sourceList[0],
-      type: InvoiceType.refill),
+      type: InvoiceTypes.refill),
   InvoiceData(
       amount: 22.2,
       date: DateTime.now(),
       source: sourceList[1],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 43.72,
       date: DateTime.now().subtract(const Duration(days: 1)),
       source: sourceList[2],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 322.2,
       date: DateTime.now().subtract(const Duration(days: 1)),
       source: sourceList[0],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 76.65,
       date: DateTime.now().subtract(const Duration(days: 1)),
       source: sourceList[3],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 23.52,
       date: DateTime.now().subtract(const Duration(days: 2)),
       source: sourceList[4],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 233.83,
       date: DateTime.now().subtract(const Duration(days: 3)),
       source: sourceList[0],
-      type: InvoiceType.refill),
+      type: InvoiceTypes.refill),
   InvoiceData(
       amount: 55.24,
       date: DateTime.now().subtract(const Duration(days: 3)),
       source: sourceList[5],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 23.52,
       date: DateTime.now().subtract(const Duration(days: 3)),
       source: sourceList[4],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
   InvoiceData(
       amount: 233.83,
       date: DateTime.now().subtract(const Duration(days: 4)),
       source: sourceList[0],
-      type: InvoiceType.refill),
+      type: InvoiceTypes.refill),
   InvoiceData(
       amount: 55.24,
-      date: DateTime.now().subtract(const Duration(days: 5)),
+      date: DateTime.now().subtract(const Duration(days: 6)),
       source: sourceList[5],
-      type: InvoiceType.expense),
+      type: InvoiceTypes.expense),
 ];
