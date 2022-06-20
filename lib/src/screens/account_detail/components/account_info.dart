@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_screen/src/config/singleton.dart';
+
 import 'package:test_screen/src/logic/bloc/account_detail/bloc.dart';
 import 'package:test_screen/src/logic/models/account_settings.dart';
-import 'package:test_screen/src/logic/services/account_settings_base.dart';
 import 'package:test_screen/src/screens/components/brand_button.dart';
+import 'package:test_screen/src/utils/double_formatter.dart';
 
 class AccountInfo extends StatelessWidget {
   final AccountSettings accountSettings;
@@ -41,11 +41,13 @@ class AccountInfo extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 16),
                     alignment: Alignment.centerRight,
                     child: BrandButton(
-                      child: Text(accountSettings.showHeaderInfo ? "Hide" : "Show"),
+                      child: Text(
+                          accountSettings.showHeaderInfo ? "Hide" : "Show"),
                       onPressed: () {
                         context.read<AccountDetailBloc>().add(
                             AccountDetailChangedEvent(accountSettings.copyWith(
-                                    showHeaderInfo: !accountSettings.showHeaderInfo)));
+                                showHeaderInfo:
+                                    !accountSettings.showHeaderInfo)));
                       },
                     ),
                   ),
@@ -55,18 +57,24 @@ class AccountInfo extends StatelessWidget {
           ),
           AnimatedOpacity(
             duration: const Duration(milliseconds: 300),
-            opacity:
-                accountSettings.showHeaderInfo
-                    ? 1
-                    : 0,
+            opacity: accountSettings.showHeaderInfo ? 1 : 0,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "\$ 120,930.59",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5
-                    ?.copyWith(color: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("\$ ", style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(color: Colors.white, fontSize: 16)),
+                  Text(
+                    accountSettings.totalAmount.toFormattedString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),

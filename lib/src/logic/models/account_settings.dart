@@ -4,11 +4,13 @@ import 'package:test_screen/src/utils/concurrency_types.dart';
 
 class AccountSettings {
   final bool showHeaderInfo;
+  final double totalAmount;
   final InvoiceTypes invoiceType;
   final ConcurrencyTypes concurrencyType;
 
   AccountSettings(
       {this.showHeaderInfo = true,
+      this.totalAmount = 180970.8343,
       this.invoiceType = InvoiceTypes.all,
       this.concurrencyType = ConcurrencyTypes.usd});
 
