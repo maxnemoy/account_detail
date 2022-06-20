@@ -1,26 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_screen/src/models/account_settings.dart';
-import 'package:test_screen/src/models/invoice_data.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_screen/src/logic/bloc/account_detail/bloc.dart';
+import 'package:test_screen/src/logic/models/account_settings.dart';
+import 'package:test_screen/src/logic/models/invoice_data.dart';
 import 'package:test_screen/src/screens/components/brand_button.dart';
 import 'package:test_screen/src/screens/components/brand_dropdown.dart';
 import 'package:test_screen/src/utils/concurrency_types.dart';
 
-class HistorySettings extends StatefulWidget {
-  const HistorySettings({Key? key}) : super(key: key);
+class HistorySettings extends StatelessWidget {
+  final AccountSettings accountSettings;
 
-  @override
-  State<HistorySettings> createState() => _HistorySettingsState();
-}
-
-class _HistorySettingsState extends State<HistorySettings> {
-  late AccountSettings settings;
-
-  @override
-  void initState() {
-    settings = AccountSettings();
-    super.initState();
-  }
+  const HistorySettings({Key? key, required this.accountSettings})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +34,7 @@ class _HistorySettingsState extends State<HistorySettings> {
             height: 13,
           ),
           BrandDropDownButton<ConcurrencyTypes>(
-            value: settings.concurrencyType,
+            value: accountSettings.concurrencyType,
             items: ConcurrencyTypes.values
                 .map((e) => DropdownMenuItem<ConcurrencyTypes>(
                       value: e,
@@ -52,9 +44,8 @@ class _HistorySettingsState extends State<HistorySettings> {
                     ))
                 .toList(),
             onSelected: (v) {
-              setState(() {
-                settings = settings.copyWith(concurrencyType: v);
-              });
+              context.read<AccountDetailBloc>().add(AccountDetailChangedEvent(
+                  accountSettings.copyWith(concurrencyType: v)));
             },
           ),
           Padding(
@@ -63,7 +54,7 @@ class _HistorySettingsState extends State<HistorySettings> {
               children: [
                 Expanded(
                   child: BrandDropDownButton<InvoiceTypes>(
-                    value: settings.invoiceType,
+                    value: accountSettings.invoiceType,
                     items: InvoiceTypes.values
                         .map((e) => DropdownMenuItem<InvoiceTypes>(
                               value: e,
@@ -73,9 +64,9 @@ class _HistorySettingsState extends State<HistorySettings> {
                             ))
                         .toList(),
                     onSelected: (v) {
-                      setState(() {
-                        settings = settings.copyWith(invoiceType: v);
-                      });
+                      context
+                          .read<AccountDetailBloc>()
+                          .add(AccountDetailChangedEvent(accountSettings.copyWith(invoiceType: v)));
                     },
                   ),
                 ),

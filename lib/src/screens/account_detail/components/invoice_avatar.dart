@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_screen/src/models/invoice_data.dart';
+import 'package:test_screen/src/logic/models/invoice_data.dart';
+
 
 class InvoiceAvatar extends StatelessWidget {
   final InvoiceData data;

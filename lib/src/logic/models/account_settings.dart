@@ -1,4 +1,5 @@
-import 'package:test_screen/src/models/invoice_data.dart';
+
+import 'package:test_screen/src/logic/models/invoice_data.dart';
 import 'package:test_screen/src/utils/concurrency_types.dart';
 
 class AccountSettings {

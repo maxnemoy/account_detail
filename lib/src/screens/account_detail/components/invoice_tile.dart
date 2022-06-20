@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:test_screen/src/models/invoice_data.dart';
+import 'package:test_screen/src/logic/models/invoice_data.dart';
 import 'package:test_screen/src/screens/account_detail/components/invoice_avatar.dart';
 import 'package:test_screen/src/utils/concurrency_types.dart';
 

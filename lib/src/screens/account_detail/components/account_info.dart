@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_screen/src/config/singleton.dart';
+import 'package:test_screen/src/logic/bloc/account_detail/bloc.dart';
+import 'package:test_screen/src/logic/models/account_settings.dart';
+import 'package:test_screen/src/logic/services/account_settings_base.dart';
 import 'package:test_screen/src/screens/components/brand_button.dart';
 
 class AccountInfo extends StatelessWidget {
-  const AccountInfo({
-    Key? key,
-  }) : super(key: key);
+  final AccountSettings accountSettings;
+  const AccountInfo({Key? key, required this.accountSettings})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +41,33 @@ class AccountInfo extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 16),
                     alignment: Alignment.centerRight,
                     child: BrandButton(
-                      child: const Text("Hide"),
-                      onPressed: () {},
+                      child: Text(accountSettings.showHeaderInfo ? "Hide" : "Show"),
+                      onPressed: () {
+                        context.read<AccountDetailBloc>().add(
+                            AccountDetailChangedEvent(accountSettings.copyWith(
+                                    showHeaderInfo: !accountSettings.showHeaderInfo)));
+                      },
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "\$ 120,930.59",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(color: Colors.white),
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity:
+                accountSettings.showHeaderInfo
+                    ? 1
+                    : 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "\$ 120,930.59",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    ?.copyWith(color: Colors.white),
+              ),
             ),
           ),
         ]),

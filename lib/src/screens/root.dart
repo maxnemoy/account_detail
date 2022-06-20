@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_screen/src/config/bloc_wrapper.dart';
 import 'package:test_screen/src/screens/account_detail/account_detail.dart';
 
 class App extends StatelessWidget {
@@ -6,9 +7,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AccountDetailScreen(),
+      home: Builder(
+        builder: (context) => const BlocWrapper(
+          child: AccountDetailScreen(),
+        ),
+      ),
     );
   }
 }
